@@ -10,7 +10,7 @@ emo_labels_num = max(unique(t_labels));
 
 pred_result = emotionPrediction(raw_data,t_labels);
 
-labels = [pred_result(:,3),pred_result(:,1)];
+labels = [pred_result(:,2),pred_result(:,1)];
 % remove rows that both elements are 0
 labels(all(labels==0,2),:) = [];
 vals = ones(size(labels,1),1)';
