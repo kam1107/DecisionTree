@@ -40,7 +40,7 @@ for i = 1:k
         for j = 1:size(tst_data,1)
             if (travelTree(tree,tst_data(j,:)))
                 pred_result(tst_idx(j),1) = em;
-                pred_result(tst_idx(j),2) = ft_lb(tst_idx(j),end);
+                pred_result(tst_idx(j),2) = t_labels(tst_idx(j),end);
             end
         end
     end   
