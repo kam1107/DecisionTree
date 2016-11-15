@@ -8,8 +8,5 @@ function ft_lb = datatrans(raw_data,labels,n)
 % Output: ft_lb   - a 612*133 matrix with a new label column positioned at
 %                   the most right
                 
-
-posidx = labels==n;
-label = zeros(length(labels),1);
-label(posidx) = 1;
+label = labels==n;
 ft_lb = [raw_data,label];
