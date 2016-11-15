@@ -6,9 +6,9 @@ load('emotions_data_66.mat');
 
 cf_matrix = confusionMatrixForDT(x,y);
 
-[avgrecall,avgprecision] = recallPrecision(cf_matrix);
+[avgrecall,avgprecision] = recallPrecision(cf_matrix,y);
 fa = fameasure(avgrecall,avgprecision,1);
-fprintf('Recall: %i\nPrecision: %i\nf1', avgrecall,avgprecision,fa);
+fprintf('Recall: %i\nPrecision: %i\nf1:%i\n', avgrecall,avgprecision,fa);
 
 
 
