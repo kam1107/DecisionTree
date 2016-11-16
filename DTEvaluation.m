@@ -8,8 +8,8 @@ load('emotions_data_66.mat');
 
 cf_matrix = confusionMatrixForDT(x,y);
 
-output = recallPrecision(cf_matrix,y);
+evl_matrix = recallPrecision(cf_matrix,y);
 
-disp('      Ave       E1        E2        E3        E4         E5        E6');
-disp(output);
+disp('      Avg       E1        E2        E3        E4         E5        E6');
+disp(evl_matrix);
 
