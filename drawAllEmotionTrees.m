@@ -5,6 +5,6 @@ load('emotions_data_66.mat');
 
 ft_lb = datatrans(raw_data,target_labels,emo_label);
 tree = createDtree(ft_lb,emo_label,0);
-DrawDecisionTree(tree,'Emotion'+string(emo_label));
+DrawDecisionTree(tree,strcat('Emotion',num2str(emo_label)));
 
 
