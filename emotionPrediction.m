@@ -2,8 +2,8 @@ function pred_result = emotionPrediction(raw_data,t_labels)
 % This funciton applied k-fold cross validation on the transferred data
 % Input: raw_data - initial data
 %        t_labels - target labels in column
-% Output: emo_idx  -  an array contains 0s and 1s indicating the predicted
-%                     emotion(predicted to be n, then equals 1, otherwise 0)
+% Output: pred_result  -  a matrix, first column is actual label, second
+%                         column is predicted label (1~6)
 
 % Constant
 k = 10;  % 10 fold cross validation 
@@ -19,8 +19,10 @@ set_sizes(1,r+1:end) = floor(num_examples/k);
 % training and validation sets
 idxpool = randperm(num_examples);
 
-% predict result for test data, first column is prediction, second column is actual label
+% predict result for test data, first column is actual label, second column
+% is predicted label
 pred_result = zeros(num_examples,2);
+tmp_result = zeros(num_examples,max(unique(t_labels)));
 
 % k-fold cross validation (6 trees generated at each fold)
 for i = 1:k 
@@ -39,9 +41,26 @@ for i = 1:k
         % test
         for j = 1:size(tst_data,1)
             if (travelTree(tree,tst_data(j,:)))
-                pred_result(tst_idx(j),1) = em;
-                pred_result(tst_idx(j),2) = t_labels(tst_idx(j),end);
+                tmp_result(tst_idx(j),em) = 1;
+                pred_result(tst_idx(j),1) = t_labels(tst_idx(j),end);
             end
         end
     end   
+end
+
+% if the example is classified to more than one class, randomly select one
+% classified class as the result
+for i = 1:size(tmp_result,1)
+    if sum(tmp_result(i,:)) == 0
+        pred_result(i,2) = 0;
+    end
+    
+    if sum(tmp_result(i,:)) == 1
+        pred_result(i,2) = find(tmp_result(i,:)==1);
+    end
+    
+    if sum(tmp_result(i,:)) > 1
+        idx = find(tmp_result(i,:)==1);
+        pred_result(i,2) = idx(randperm(size(idx,2),1));
+    end
 end

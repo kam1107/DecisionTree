@@ -1,14 +1,15 @@
-function cf_matrix = DTEvaluation()
-% Output: a confusion matrix, average recall,
-%         precision and f1 measure
+function [cf_matrix,evl_matrix] = DTEvaluation()
+% Output: cf_matrix: a confusion matrix
+%         evl_matrix: overall average recall, precision and f1, and 
+%                     average recall, precision and f1 measure for each
+%                     emotion
 
 load('emotions_data_66.mat');
 
 cf_matrix = confusionMatrixForDT(x,y);
 
-[avgrecall,avgprecision] = recallPrecision(cf_matrix,y);
-fa = fameasure(avgrecall,avgprecision,1);
-fprintf('Recall: %i\nPrecision: %i\nf1:%i\n', avgrecall,avgprecision,fa);
+evl_matrix = recallPrecision(cf_matrix,y);
+
 
 
 

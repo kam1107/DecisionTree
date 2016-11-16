@@ -4,18 +4,17 @@ function cf_matrix = confusionMatrixForDT(raw_data,t_labels)
 %       raw_data - initial data
 %       t_labels - target labels in column
 % Output:
-%       confusion matrix - 6*6 (excluding false negative)
+%       cf_matrix - 6*6 (excluding false negative)
 
 emo_labels_num = max(unique(t_labels));
 
 pred_result = emotionPrediction(raw_data,t_labels);
 
-labels = [pred_result(:,2),pred_result(:,1)];
 % remove rows that both elements are 0
-labels(all(labels==0,2),:) = [];
-vals = ones(size(labels,1),1)';
+pred_result(all(pred_result==0,2),:) = [];
+vals = ones(size(pred_result,1),1)';
 
-cf_matrix = accumarray(labels,vals,[emo_labels_num,emo_labels_num]);
+cf_matrix = accumarray(pred_result,vals,[emo_labels_num,emo_labels_num]);
 
 
 
