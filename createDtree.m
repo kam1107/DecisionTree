@@ -1,16 +1,12 @@
-function tree = createDtree(tree_data,emo_label,folder_num)
+function tree = createDtree(tree_data,emo_label,fold_num)
 % createDtree - function to create dicision tree
 % Input: tree_data    - traning data sets for decision tree generation
 %        emo_label            - emotion label
-%        folder_num           - folder number
+%        fold_num           - fold number
 % Output: a tree
 
-
-% Initialise active attribute index array
-active_attrib_idx = ones(1,size(tree_data,2)-1);
-
 % Build tree
-tree = ID3(tree_data,active_attrib_idx);
+tree = ID3(tree_data);
 
-% Draw tree - uncomment to view trees generated from each folder
-% DrawDecisionTree(tree,string(n)+'-'+string(i));
+% Draw tree - uncomment to view trees generated from each fold
+%DrawDecisionTree(tree,string(emo_label)+'-'+string(fold_num));
