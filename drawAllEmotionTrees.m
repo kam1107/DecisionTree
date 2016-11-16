@@ -6,6 +6,6 @@ load('emotions_data_66.mat');
 for i = 1:6
     ft_lb = datatrans(x,y,i);
     tree = createDtree(ft_lb,i,0);
-    DrawDecisionTree(tree,'Emotion'+string(i));
+    DrawDecisionTree(tree,strcat('Emotion',num2str(i)));
 end
 
