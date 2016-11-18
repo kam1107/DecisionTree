@@ -18,17 +18,19 @@ function [tree] = ID3(ft_lb)
 num_examples = size(ft_lb,1);
 
 % Create tree node
-tree = struct('op','','kids',[],'class','');
+tree = struct('op','','kids',[],'class','','num',0);
 
 % When the node is pure, set the taget label
 last_column_sum = sum(ft_lb(:, end));
 if(last_column_sum == num_examples)
     tree.class = 1; 
+    tree.num = num_examples;
     return;
 end
 
 if(last_column_sum == 0)
     tree.class = 0;
+    tree.num = num_examples;
     return;
 end
 

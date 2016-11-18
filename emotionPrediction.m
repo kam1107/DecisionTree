@@ -36,7 +36,7 @@ for i = 1:k
         
         % training set
         trn_idx = idxpool(setdiff(1:end,tst_start:tst_end));
-        tree = createDtree(ft_lb(trn_idx,:),em,i); 
+        tree = ID3(ft_lb(trn_idx,:)); 
         
         % test
         for j = 1:size(tst_data,1)

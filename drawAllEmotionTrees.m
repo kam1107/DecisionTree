@@ -1,10 +1,9 @@
-function drawAllEmotionTrees(raw_data,target_labels,emo_label)
+function tree = drawAllEmotionTrees(raw_data,target_labels,emo_label)
 % This function is used to draw decision trees for
 % all the emotions with whole data set
-load('emotions_data_66.mat');
 
 ft_lb = datatrans(raw_data,target_labels,emo_label);
-tree = createDtree(ft_lb,emo_label,0);
+tree = ID3(ft_lb);
 DrawDecisionTree(tree,strcat('Emotion',num2str(emo_label)));
 
 

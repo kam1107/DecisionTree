@@ -102,4 +102,5 @@ else
     line(tree.X, tree.Y, 'marker', '.', 'markersize', 8)
 %     text(tree.X, tree.Y, opText, 'HorizontalAlignment', 'center', 'VerticalAlignment', 'top', 'interpreter', 'none')
     text(tree.X, tree.Y, num2str(tree.class) ,'HorizontalAlignment', 'right', 'VerticalAlignment', 'top', 'interpreter', 'none');
+    %text(tree.X, tree.Y, strcat('(',num2str(tree.num),')') ,'HorizontalAlignment', 'left', 'VerticalAlignment', 'top', 'interpreter', 'none');
 end
